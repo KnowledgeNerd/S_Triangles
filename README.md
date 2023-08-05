@@ -5,7 +5,7 @@ Sierpiński Triangle is hard to type... so I call them S Triangles.  This is a s
 
 S_Triangle.ps1 is the primary file and produces the files seen in the Triangles folder.
 
-
+## Links and Images
 A Wikipedia entry on Sierpiński Triangles
 [link](https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle)
 
