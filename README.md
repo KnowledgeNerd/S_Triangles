@@ -25,6 +25,6 @@ Getting the "viewer' set up right using the right font is one of the biggest cha
 
 
 ## To-Do
-[] Switch all function to one style of parameters -> cmdlet-style
-[] Add more comments to code
-[] Add links for terminal viewer and font
+-[] Switch all function to one style of parameters -> cmdlet-style
+-[] Add more comments to code
+-[] Add links for terminal viewer and font
