@@ -57,7 +57,7 @@ function Stack_S_Triangles ()
             [int]
             $MergeText_StartIndex,
 
-            # MergeText_EndIndex Endt Index of Text on MergeText to be appended ONTO
+            # MergeText_EndIndex End Index of Text on MergeText to be appended ONTO
             [Parameter(Mandatory=$true,  
                        Position=3)]
             [ValidateScript({$_ -is [int] -and ($_ -ge 0 -and $_  -lt ($MergeText.count))})]
@@ -185,7 +185,7 @@ function Stack_S_Triangles ()
     $New_Triangle[$Target_Row] = Replace_Range_w_String -Target $New_Triangle[$Target_Row] -Replacement_Text $Replacement_Text -Start_Index $Start_Index -End_Index $End_Index
     Print-Triangle -Triangle $New_Triangle
 
-    # Step 8 - Replace TopSubTriangle Bottom Row of New_Triangle with the modified Bottom Row of Current_Triangle 
+    # Step 9 - Replace TopSubTriangle Bottom Row of New_Triangle with the modified Bottom Row of Current_Triangle 
     $Replacement_Text = '┻━┻'
     $Start_Index = $Current_Triangle_X - 1
     $End_Index = $Start_Index + $Replacement_Text.Length -1
@@ -286,13 +286,13 @@ function Output_S_Triangle_to_Batch
         [string[]]
         $Triangle,
 
-        # Triangle The S Triangle to output into a batch file
+        # FilePath The path of the file you'd like to output $Triangle to
         [Parameter(Mandatory=$true,  
                    Position=1)]
         [string]
         $FilePath,
 
-        # Triangle The S Triangle to output into a batch file
+        # Force Whether you'd like to overwrite an existing file
         [Parameter(Mandatory=$false,  
                    Position=2)]
         [switch]
@@ -327,17 +327,17 @@ pause
 
 function Create_S_Triangle_Batch_Files ($Rank_Start, $Rank_End, $Destination_Folder)
 {
-    $Launcher = ""
+    $Launcher_Text = ""
     ($Rank_Start)..($Rank_End) | % {
         $Triangle = S_Triangle -Rank $_
         Output_S_Triangle_to_Batch -Triangle $Triangle -FilePath (Join-Path -Path $Destination_Folder -ChildPath "S_Tri_Rank_$($_).bat") -Force
         $Launcher += "call S_Tri_Rank_$($_).bat`r`n"
     }
-    Out-File-UTF8NoBOM -FilePath (Join-Path -Path $Destination_Folder -ChildPath "Show_Triangles.bat") -Output_Text $Launcher -Force
+    Out-File-UTF8NoBOM -FilePath (Join-Path -Path $Destination_Folder -ChildPath "Show_Triangles.bat") -Output_Text $Launcher_Text -Force
 }
 
-
-
-
+####
+####   Please modify for your use.  
+####
 
 Create_S_Triangle_Batch_Files -Rank_Start 1 -Rank_End 8 -Destination_Folder "C:\Share\Triangles"
